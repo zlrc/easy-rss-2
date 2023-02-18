@@ -31,5 +31,6 @@
 	},
 	"dependencies": {
 		"photon-colors": "^3.3.2"
-	}
+	},
+	"packageManager": "yarn@3.4.1"
 }

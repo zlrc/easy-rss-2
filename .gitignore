@@ -59,3 +59,5 @@ typings/
 
 dist
 web-ext-artifacts
+
+.yarn/
