@@ -59,12 +59,17 @@ function parse(el: Element, feed: Feed) {
 const parser = new DOMParser();
 
 async function fetchEntries(feed: Feed): Promise<Entry[]> {
-	const src = await (await fetch(feed.url)).text();
-	const xml = parser.parseFromString(src, "application/xml");
-	const entries: Entry[] = [];
-	for (const el of xml.querySelectorAll("entry, item"))
-		entries.push(parse(el, feed));
-	return entries;
+	try {
+		const src = await (await fetch(feed.url)).text();
+		const xml = parser.parseFromString(src, "application/xml");
+		const entries: Entry[] = [];
+		for (const el of xml.querySelectorAll("entry, item"))
+			entries.push(parse(el, feed));
+		return entries;
+	} catch (e) {
+		console.log(`Failed to retrieve or process feed from "${feed.url}".\nFailed with error "${e}"`);
+		return [];
+	}
 }
 
 export { fetchEntries };
