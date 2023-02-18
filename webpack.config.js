@@ -1,7 +1,6 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
@@ -12,10 +11,8 @@ module.exports = env => ({
 		"find/find": "./src/find/find.ts",
 		"background/background": "./src/background/background.ts"
 	},
-	devtool: env.prod ? "" : "inline-source-map",
+	devtool: env.prod ? false : "inline-source-map",
 	output: {
-		path: path.resolve(__dirname, "dist"),
-		filename: "[name].js",
 		publicPath: "/dist/"
 	},
 	module: {
