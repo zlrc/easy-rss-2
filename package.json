@@ -9,6 +9,8 @@
 		"watch": "web-ext run -s dist/",
 		"build": "webpack --mode production --env prod",
 		"dist": "yarn build && web-ext build -s dist/",
+		"build-dev": "webpack --mode development --env dev",
+		"dist-dev": "yarn build-dev && web-ext build --overwrite-dest -s dist/",
 		"lint": "eslint ."
 	},
 	"devDependencies": {
