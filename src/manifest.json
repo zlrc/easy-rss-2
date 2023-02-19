@@ -11,10 +11,10 @@
 
   "name": "Easy RSS",
   "description": "An RSS reader for both the common man and the power user",
-  "homepage_url": "https://github.com/SrKomodo/easy-rss",
+  "homepage_url": "https://github.com/arguablykomodo/easy-rss",
   "developer": {
-    "name": "SrKomodo",
-    "url": "https://github.com/SrKomodo"
+    "name": "arguablykomodo",
+    "url": "https://github.com/arguablykomodo"
   },
 
   "icons": {
