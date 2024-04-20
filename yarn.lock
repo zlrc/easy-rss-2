@@ -2010,9 +2010,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"easy-rss@workspace:.":
+"easy-rss-2@workspace:.":
   version: 0.0.0-use.local
-  resolution: "easy-rss@workspace:."
+  resolution: "easy-rss-2@workspace:."
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.52.0
     "@typescript-eslint/parser": ^5.52.0

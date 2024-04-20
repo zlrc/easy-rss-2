@@ -1,4 +1,8 @@
-# Easy RSS
+# Easy RSS 2
+
+**This is a fork of the [Easy RSS](https://github.com/arguablykomodo/easy-rss)
+extension by [arguablykomodo](https://github.com/arguablykomodo). They get the
+credit for most of the work that has gone into Easy RSS 2.**
 
 Are you an avid consumer of internet media? Are you frustrated by the lack of a
 consistent way of getting notifications for the content that you love? If you
