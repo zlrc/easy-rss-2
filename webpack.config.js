@@ -31,7 +31,7 @@ module.exports = env => ({
 			},
 			{
 				test: /\.pug$/,
-				loader: "pug-loader"
+				loader: "@webdiscus/pug-loader"
 			}
 		]
 	},
