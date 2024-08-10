@@ -27,6 +27,7 @@ function parse(el: Element, feed: Feed) {
 		date: "",
 		icon: "",
 		author: "",
+		feedname: "",
 	};
 
 	for (const attribute in attributes) {
@@ -52,6 +53,9 @@ function parse(el: Element, feed: Feed) {
 	// Get thumbnail
 	const thumbnail = el.getElementsByTagName("media:thumbnail")[0];
 	if (thumbnail) entry.thumbnail = thumbnail.getAttribute("url")!;
+
+	// Get name of the feed
+	entry.feedname = feed.name;
 
 	return entry as Entry;
 }

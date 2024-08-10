@@ -30,8 +30,8 @@ async function populateEntries(): Promise<void> {
 		const entryEl = el.querySelector(".entry")!;
 
 		el.querySelector(".icon")!.setAttribute("src", entry.icon);
-		el.querySelector(".title")!.textContent = entry.title;
-		el.querySelector(".author")!.textContent = entry.author;
+		el.querySelector(".title")!.textContent = entry.feedname;
+		el.querySelector(".author")!.textContent = entry.title;
 		el.querySelector(".date")!.textContent = new Date(
 			entry.date
 		).toLocaleDateString();

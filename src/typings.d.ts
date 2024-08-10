@@ -15,6 +15,7 @@ interface Entry {
 	date: string;
 	icon: string;
 	author: string;
+	feedname: string;
 	thumbnail?: string;
 }
 
