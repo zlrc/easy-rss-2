@@ -67,7 +67,7 @@ async function fetchEntries(feed: Feed): Promise<Entry[]> {
 			entries.push(parse(el, feed));
 		return entries;
 	} catch (e) {
-		console.log(`Failed to retrieve or process feed from "${feed.url}".\nFailed with error "${e}"`);
+		console.error(`Failed to retrieve or process feed from "${feed.url}".\nFailed with error "${e}"`);
 		return [];
 	}
 }
