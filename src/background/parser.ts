@@ -47,7 +47,7 @@ function parse(el: Element, feed: Feed) {
 	if (feed.url.startsWith("http://")) domain = domain.slice(7);
 	if (feed.url.startsWith("https://")) domain = domain.slice(8);
 	entry.icon =
-    "http://www.google.com/s2/favicons?domain=" + domain.split(domainRegex)[0];
+    "https://www.google.com/s2/favicons?domain=" + domain.split(domainRegex)[0];
 
 	// Get thumbnail
 	const thumbnail = el.getElementsByTagName("media:thumbnail")[0];
