@@ -56,12 +56,44 @@ function parse(el: Element, feed: Feed) {
 	return entry as Entry;
 }
 
+function escapeAttributeValues(s : string): string {
+	const re = /="([^"]*(?:[&'<>]|\\\").*?)(?<!\\)"/g; // captures unescaped attribute values e.g. <category label="d&d"/>
+	return s.replace(re, function (_match : string, group1 : string) {
+		const replacement = group1 // first capture group (everything that's between the quotation marks, only)
+			.replace(/&(?![^\s]+;)/g, "&amp;") // regex matches any ampersand that *isn't* part of an escaped character.
+			.replace("\"", "&quot;")
+			.replace("'", "&apos;")
+			.replace("<", "&lt;")
+			.replace(">", "&gt;");
+		return `="${replacement}"`;
+	});
+}
+
 const parser = new DOMParser();
 
 async function fetchEntries(feed: Feed): Promise<Entry[]> {
 	try {
-		const src = await (await fetch(feed.url)).text();
-		const xml = parser.parseFromString(src, "application/xml");
+		const res = await fetch(feed.url);
+		
+		// Check for a valid response code
+		if (!res.ok)
+			throw Error(`Fetch returned with status code ${res.status}`);
+
+		// Attempt to parse XML as-is.
+		const src = await res.text();
+		let xml = parser.parseFromString(src, "application/xml");
+
+		// Check for any errors in parsing the XML
+		let errorNode = xml.querySelector("parsererror");
+		if (errorNode) {
+			// Attempt to escape any characters if errors were found.
+			xml = parser.parseFromString(escapeAttributeValues(src), "application/xml");
+			errorNode = xml.querySelector("parsererror");
+			if (errorNode)
+				throw errorNode.innerHTML;
+			console.warn(`Feed "${feed.name}" contains unescaped XML, but an automatic fix has been successfully applied.\nURL: ${feed.url}`);
+		}
+		
 		const entries: Entry[] = [];
 		for (const el of xml.querySelectorAll("entry, item"))
 			entries.push(parse(el, feed));
